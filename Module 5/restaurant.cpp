@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "restaurant.h"
 using namespace std;
 
 void menu(string menu){
