@@ -1,1 +1,88 @@
 
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+class shoppingcart{
+public:
+
+string name;
+double price;
+int quantity;
+
+double getTotal(){
+return price*quantity;
+
+}
+
+};
+
+void showMenu(){
+cout << " 1. Add product to the cart " << endl;
+cout << " 2. View checkout " << endl;
+cout << " 3. Exit " << endl;
+cout << " Choose an option: " << endl;
+}
+
+int main(){
+
+
+int option = 0;
+
+cout << " WELCOME TO ESTHEFANIA'S SHOPPING CART " << endl;
+
+while(option!=3){
+    
+showMenu();
+
+cin>> option;
+
+
+
+switch (option){
+case 1:{
+
+shoppingcart product;
+cout << " Enter a name: " ;
+cin.ignore();
+getline(cin, product.name);
+cout << " Enter a price: " ;
+cin>> product.price;
+cout << " Enter a quantity: " ;
+cin>> product.quantity;
+
+ofstream file("cart.txt", ios::app);
+file << product.name << " " << product.price << " " << product.quantity << endl;
+file.close();
+break;    
+}
+    
+case 2 :{
+
+ifstream file("cart.txt");
+string name;
+double price;
+int quantity;
+double grandTotal = 0;
+
+while(file >> name >> price >> quantity){
+    grandTotal += price * quantity;
+
+}
+cout << " Total is: " << " $ " << grandTotal << endl;
+
+break;    
+
+     
+}
+
+case 3: 
+cout << " THANKS FOR SHOPPING! " << endl;
+break;
+}
+}
+
+return 0;    
+}
