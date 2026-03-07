@@ -1,1 +1,85 @@
+#include <iostream>
+#include <fstream> // library for files.
+#include <string> // library for text.
+#include <sstream> // library for separe during the lecture.
+using namespace std;
 
+class MusicGenres { // create my public class.
+    public:
+
+    double number; // identify the data type and the names
+    string country; // identify the data type and the names
+    double hiphop;   // identify the data type and the names
+    double pop;  // identify the data type and the names
+    double latinreggaeton; // identify the data type and the names
+
+    MusicGenres(double n, string c, double h, double p, double l){ //constructowith parameters. 
+
+        number = n;
+        country = c;
+        hiphop = h;
+        pop = p;
+        latinreggaeton = l;
+    }
+
+    void information(){ // create a void function, that i will call in my main function later
+
+        cout << " #: " << number << endl;  // string in text + the number.
+        cout << " Country:" << country << endl; //string in text + the country.
+        cout << " Hip Hop/Rap/R&B: " << hiphop << endl; //string in text + the type hiphop/rap and r&b.
+        cout << " Pop: " << pop << endl; //string in text + the type of pop.
+        cout << " Latin/Reggaeton: " << latinreggaeton << endl; //string in text + the type of latin/reggaeton.
+
+    }
+};
+
+int main(){
+
+ ifstream file("cleaned.csv"); //write the file i am using as open file.
+ 
+ if(!file.is_open()){  // check if my file is opening,if is not opening, i will recived a print of ERROR.
+    cout << " File is not open, ERROR " << endl;
+ }
+
+ string line; // jump to the another line.
+
+ getline(file, line); //use getline for file and the lines.
+
+ for (int i = 0; i <10 ; i++){ // apply for loop counting from 0 to 10 and increment each time until 10.
+
+    // depend if is a number of string i need to adjust the stod means string to double, so can rea decimals.
+    // there 3 get lines saved without information, because i just choosed the type of music i want to show in my code. so it skiped.
+    getline(file, line);
+    stringstream ss(line);
+    string token;
+
+    getline(ss, token, ',');
+    double num = stod(token);
+
+    getline(ss, token, ',');
+    string c = token;
+
+    getline(ss, token, ',');
+    double h = stod(token);
+
+    getline(ss, token, ',');
+
+    getline(ss, token, ',');
+    double p = stod(token);
+
+    getline(ss, token, ',');
+
+    getline(ss, token, ',');
+    double l = stod(token);
+
+    getline(ss, token, ',');
+    
+    MusicGenres enter (num,c,h,p,l); //to finished i am calling my void function call information, so it going to show everything i put in string and then the variable.
+    enter.information();
+ }
+  file.close(); // closed my file and ready to run in the terminal.
+
+
+
+return 0;    
+}
