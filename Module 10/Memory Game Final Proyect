@@ -1,1 +1,133 @@
+#include <iostream>
 
+using namespace std;
+
+int main(){
+    //display welcome message
+    cout << " Welcome to Memory Game! " << endl;
+    //integer matrix to represent card positions
+    int matrix[4][3]= { {1, 2, 3, }, {4, 5, 6, }, {7, 8, 9 },{10, 11, 12} };
+    // Display the board with hidden cards
+    for(int i=0; i <4; i++){ 
+        for(int j=0; j <3; j++){ 
+
+        cout << "[?]" << "";
+
+        }  
+
+        cout << endl;
+    }
+
+    
+    cout << endl;
+
+    // Display animal names label
+    cout << "Names of the animals : " << endl;
+    // 2D array storing the 6 pairs of animals
+    string animalmatrix[4][3]={
+        {"Cat","Dog","Bird"},
+        {"Pig", "Bunny","Fish"},
+        {"Dog", "Bird","Cat"},
+        {"Bunny","Fish","Pig"},
+
+        };
+
+
+    int rows = 4;
+    int colum = 3;
+    // Display all animal names on the board
+    for (int i=0; i <rows; i++){
+        for (int j=0; j <colum; j++){
+            
+         cout << "[" << animalmatrix [i][j] << "]" <<" "; 
+         
+            
+        }
+        
+        cout << endl;
+
+    }
+    
+    cout << endl;
+    // Ask player to memorize cards and press ENTER to start
+    cout << "1. Take a look of each card " << endl;
+    cout << "2. Press ENTER " << endl;
+    cin.get();
+    // Start the game and hide cards again
+    cout << "Let's start the game! " << endl;
+    for(int i=0; i <4; i++){ 
+        for(int j=0; j <3; j++){
+
+        cout << "[?]" << "";
+
+        }  
+
+        cout << endl;
+    }
+    // Variables to store player's card selection
+    int row1 = 0;
+    int colum1 = 0;
+    int row2 = 0;
+    int colum2 = 0;
+    int counter = 0; // Counter to track pairs found
+    while (counter < 6){ // Game loop - runs until all 6 pairs are found
+
+   
+    // Ask player to pick first card
+    cout << " pick any row card: " << " (0-3) " << endl;
+    cin>>row1;
+    cout << " pick any colum card: " << " (0-2) " << endl;
+    cin>>colum1;
+
+
+    cout << endl;
+
+    // Ask player to pick second card
+    cout<< " pick any row card: " << " (0-3) " << endl;
+    cin>>row2;
+    cout << " pick any colum card: " << " (0-2) " << endl;
+    cin>>colum2;
+
+    // Display board revealing only the two selected cards
+    for(int i=0; i <4; i++){ //filas
+        for(int j=0; j <3; j++){ // columnas
+
+        if((i==row1 && j==colum1) || (i==row2 && j==colum2))
+        {
+        
+            cout << animalmatrix[i][j] << ""; 
+        }
+
+        else
+        {
+            cout << "[?]" << "";
+        }
+
+    
+        }  
+
+
+        cout << endl;
+
+    }
+
+    // Check if both selected cards are a match
+    if(animalmatrix[row1][colum1] == animalmatrix[row2][colum2])
+    {
+        cout << " MATCH " << endl;
+        counter++; // Increment counter when match is found
+    }
+    else
+    {
+        cout << " NO MATCH " << endl;
+    }
+
+    }
+    // Display congratulations when all pairs are found
+    cout << " Congratulations!! You complete all the cards " << endl;
+
+   
+
+
+return 0;    
+}
